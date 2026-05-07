@@ -9,6 +9,10 @@ import { tabularRouter } from "./routes/tabular";
 import { workflowsRouter } from "./routes/workflows";
 import { userRouter } from "./routes/user";
 import { downloadsRouter } from "./routes/downloads";
+import { yargitayRouter } from "./routes/yargitay";
+import { danistayRouter } from "./routes/danistay";
+import { emsalRouter } from "./routes/emsal";
+import { anayasaRouter } from "./routes/anayasa";
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -31,6 +35,10 @@ app.use("/workflows", workflowsRouter);
 app.use("/user", userRouter);
 app.use("/users", userRouter);
 app.use("/download", downloadsRouter);
+app.use("/yargitay", yargitayRouter);
+app.use("/danistay", danistayRouter);
+app.use("/emsal", emsalRouter);
+app.use("/anayasa", anayasaRouter);
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 

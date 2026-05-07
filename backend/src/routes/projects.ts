@@ -16,8 +16,10 @@ const ALLOWED_TYPES = new Set(["pdf", "docx", "doc"]);
 
 // GET /projects
 projectsRouter.get("/", requireAuth, async (req, res) => {
+  try {
   const userId = res.locals.userId as string;
   const userEmail = res.locals.userEmail as string;
+  console.error("[projects] GET userId:", userId, "email:", userEmail);
   const db = createServerSupabase();
 
   const { data: ownProjects, error: ownError } = await db
@@ -25,7 +27,10 @@ projectsRouter.get("/", requireAuth, async (req, res) => {
     .select("*")
     .eq("user_id", userId)
     .order("created_at", { ascending: false });
-  if (ownError) return void res.status(500).json({ detail: ownError.message });
+  if (ownError) {
+    console.error("[projects] ownProjects error:", ownError);
+    return void res.status(500).json({ detail: ownError.message });
+  }
 
   const { data: sharedProjects, error: sharedError } = userEmail
     ? await db
@@ -69,6 +74,10 @@ projectsRouter.get("/", requireAuth, async (req, res) => {
     }),
   );
   res.json(result);
+  } catch (e) {
+    console.error("[projects] CRASH:", (e as any)?.message, (e as any)?.stack);
+    res.status(500).json({ detail: (e as any)?.message ?? "Unknown error" });
+  }
 });
 
 // POST /projects

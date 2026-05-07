@@ -73,4 +73,26 @@ export const BUILTIN_WORKFLOWS: { id: string; title: string; prompt_md: string }
             "15. **Governing Law & Dispute Resolution** — Applicable law, forum, arbitration or litigation, and any mandatory escalation steps\n\n" +
             "Generate the summary as a downloadable Word document.",
     },
-];
+{
+        id: "builtin-yargitay-search",
+        title: "Yargıtay Karar Arama",
+        prompt_md:
+            "## Yargıtay Karar Arama\n\n" +
+            "Bu workflow, Yargıtay karar arama sistemi üzerinden belirtilen anahtar kelimeyle ilgili kararları bulur.\n\n" +
+            "**Kullanım:** Yargıtay'da aramak istediğiniz anahtar kelimeyi veya konuyu belirtin. " +
+            "Sistem otomatik olarak Yargıtay karar arama sitesinden ilgili kararları çeker.\n\n" +
+            "**Çalışma şekli:**\n" +
+            "1. Siz bir anahtar kelime veya hukuki konu belirtin\n" +
+            "2. Backend otomatik olarak Yargıtay sitesinde arama yapar\n" +
+            "3. Bulunan kararların özet bilgileri (Esas numarası, tarih, Daire, Konu) listelenir\n" +
+            "4. İstediğiniz kararın detayını görüntüleyebilirsiniz\n\n" +
+            "**Örnek arama kelimeleri:**\n" +
+            "- 'kıdem tazminatı'\n" +
+            "- 'fazla çalışma alacağı'\n" +
+            "- 'haksız fesih'\n" +
+            "- 'ihbar tazminatı'\n" +
+            "- 'iş kazası'\n" +
+            "- 'mobbing'\n" +
+            "- 'toren kira uyarlaması'\n\n" +
+            "**Dikkat:** Yargıtay sitesinin erişilebilirliği zaman zaman değişkenlik gösterebilir.",
+    },
